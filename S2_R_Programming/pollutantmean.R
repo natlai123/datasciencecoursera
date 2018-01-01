@@ -25,7 +25,7 @@ pollutantmean <- function(directory, pollutant, id=1:332){
     }
 }
 
-# Example using 'pollutantmean'
+# Examples using 'pollutantmean'
 
 path = "~/Desktop/datasciencecoursera/S2_R_Programming/specdata"
 
