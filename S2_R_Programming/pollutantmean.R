@@ -13,7 +13,7 @@
 
 pollutantmean <- function(directory, pollutant, id=1:332){
     file_input <- paste0(directory, "/", formatC(id, width=3, flag="0"), ".csv")
-    data <- rbindlist(lapply(file_input,data.table::fread))
+    data <- data.table::rbindlist(lapply(file_input,data.table::fread))
     if (pollutant == "sulfate"){
         return(mean(data$sulfate, na.rm = TRUE))
         }
