@@ -2,6 +2,8 @@
 # Programming Assignment 
 # Part 1 
 
+# https://www.coursera.org/learn/r-programming/supplement/amLgW/programming-assignment-1-instructions-air-pollution
+
 # The function, 'pollutantmean', calculates the mean of a pollutant 
 # (sulfate or nitrate) across a specified list of monitors. The function 
 # takes three arguments: 'directory', 'pollutant', and 'id'. Given a vector 
@@ -25,9 +27,13 @@ pollutantmean <- function(directory, pollutant, id=1:332){
     }
 }
 
+<<<<<<< Updated upstream:S2_R_Programming/pollutantmean.R
 # Examples using 'pollutantmean'
+=======
+# Checking 'pollutantmean'
+>>>>>>> Stashed changes:S02_R_Programming/pollutantmean.R
 
-path = "~/Desktop/datasciencecoursera/S2_R_Programming/specdata"
+path = "~/Desktop/datasciencecoursera/S02_R_Programming/specdata"
 
 pollutantmean(directory = path, pollutant = "sulfate", 1:10) 
 
