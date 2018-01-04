@@ -27,11 +27,7 @@ pollutantmean <- function(directory, pollutant, id=1:332){
     }
 }
 
-<<<<<<< Updated upstream:S2_R_Programming/pollutantmean.R
-# Examples using 'pollutantmean'
-=======
 # Checking 'pollutantmean'
->>>>>>> Stashed changes:S02_R_Programming/pollutantmean.R
 
 path = "~/Desktop/datasciencecoursera/S02_R_Programming/specdata"
 
