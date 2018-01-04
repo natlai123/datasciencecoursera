@@ -30,9 +30,6 @@ pollutantmean <- function(directory, pollutant, id=1:332){
 # Checking 'pollutantmean'
 
 path = "~/Desktop/datasciencecoursera/S02_R_Programming/specdata"
-
 pollutantmean(directory = path, pollutant = "sulfate", 1:10) 
-
 pollutantmean(directory = path, "nitrate", 70:72)
-
 pollutantmean(directory = path, "nitrate", 23)
