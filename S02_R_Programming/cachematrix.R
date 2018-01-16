@@ -47,7 +47,6 @@ makeCacheMatrix <- function(x = matrix()){
          getinverse=getinverse)
 }    
     
-
 # cacheSolve() requires an argument that is returned by makeCacheMatrix to retrieve 
 # the inverse from the cached value that is stored in the makeCacheMatrix()'s environment.
 # 1. checks to see if the inverse has already been calculated. 
