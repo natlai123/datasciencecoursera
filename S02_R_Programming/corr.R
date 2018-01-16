@@ -1,6 +1,6 @@
 # S2_R_Programming 
 # Programming Assignment 
-# Part 3 
+# Week 2, Part 3 
 
 # https://www.coursera.org/learn/r-programming/supplement/amLgW/programming-assignment-1-instructions-air-pollution
 

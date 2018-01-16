@@ -1,6 +1,6 @@
 # S2_R_Programming 
 # Programming Assignment 
-# Part 2
+# Week 2, Part 2
 
 # https://www.coursera.org/learn/r-programming/supplement/amLgW/programming-assignment-1-instructions-air-pollution
 
@@ -26,7 +26,8 @@ complete1 <- function(directory, id=1:332){
 
 complete2 <- function(directory, id=1:332){
     # Creating a vector of directory path for importing csv file 
-    file_input <- paste0(directory, "/", formatC(id, width=3, flag="0"), ".csv")
+    #file_input <- paste0(directory, "/", formatC(id, width=3, flag="0"), ".csv")
+    file_input <- paste0(directory, "/", stringr::str_pad(id, width=3, side = "left", pad = "0"), ".csv")
     data <- lapply(file_input, data.table::fread)
     data <- lapply(data, complete.cases)
     nobs <- sapply(data, sum)
