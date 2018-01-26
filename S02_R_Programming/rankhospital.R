@@ -58,7 +58,7 @@ rankhospital("MN", "heart attack", 5000)
 # [1] NA
 
 
-# Method 2: data.table, which is way faster than Method1
+# Method 2: data.table, which is way faster than Method 1
 best <- function(state, outcome) {
     # Read outcome data
     require(data.table)
