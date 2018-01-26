@@ -1,5 +1,5 @@
 # Data Science Specialization 
-## John Hopkins Coursera
+## John Hopkins University / Coursera
 
 Course 1: Data Scientist Toolbox (Completed)
 
