@@ -16,10 +16,12 @@
 setwd("/Users/nathaniellai/Desktop/datasciencecoursera/S02_R_Programming/R_C2_data")
 
 # Method 1: Base R (Split-Apply-Combine)
-rankall <- function(outcome, num = "best"){
+rankallb <- function(outcome, num = "best"){
     # Read outcome data
         out_data <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
         out_data[, 11] <- as.numeric(out_data[, 11]) 
+        out_data[, 17] <- as.numeric(out_data[, 17]) 
+        out_data[, 23] <- as.numeric(out_data[, 23]) 
     # Shorten variables names for look-up
         colnames(out_data)[2]  <- "hospital"
         colnames(out_data)[7]  <- "state"
@@ -27,14 +29,15 @@ rankall <- function(outcome, num = "best"){
         colnames(out_data)[17] <- "heart_failure"
         colnames(out_data)[23] <- "pneumonia"
     # Check that state and outcome are valid
-        if(!outcome %in% c("heart attack", "heart failure", "pneumonia")) stop("invalid outcome")
-        if(class(num)=="character" && !num %in%  c("best", "worst")) stop("invalid num")
-        else if (class(num) != "numeric" && num <= 0) stop("invalid num")
+        # if(!outcome %in% c("heart attack", "heart failure", "pneumonia")) stop("invalid outcome")
+        # if(class(num)=="character" && !num %in%  c("best", "worst")) stop("invalid num")
+        # else if (class(num) != "numeric" && num <= 0) stop("invalid num")
     # Select required columns and remove NA
         outcome <- gsub(" ", "_", outcome) # For look-up 
-        out_data <- out_data[c(2, 7, 11, 17, 23)][complete.cases(out_data[,outcome]),]
-    # Arrange by state, outcome, hospital_name 
-    out_data<- out_data[order(out_data$state, out_data[, outcome], out_data$hospital),][, c(1,2)]
+        out_data <- out_data[,c(2, 7, 11, 17, 23)][complete.cases(out_data[,outcome]),]
+    # Arrange by state, outcome, hospital
+        
+    out_data<- out_data[order(out_data$state, out_data[,outcome], out_data$hospital),][, c(1,2)]
     
     # Helper function to find the hospital of the given rank for each state
     select_out_df <- function(sort_df, num=num) {
@@ -70,7 +73,7 @@ tail(rankall("heart failure"), 10)
 
 
 # Method 2: data.table, which is way faster than Method 1
-rankall <- function(outcome, num = "best"){
+rankalld <- function(outcome, num = "best"){
     # Read outcome data
         require(data.table)
         out_data <- fread("outcome-of-care-measures.csv")
