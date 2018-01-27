@@ -45,11 +45,14 @@ rankall <- function(outcome, num = "best"){
         } else {
             num
         }
+    # If num > nrow(sort_df), NAs are returned under the colnames of hospital and state
         return(sort_df[num,])
     }
     
     # Split-Apply-Combine 
-        out_matrix <- t(sapply(split(out_data, out_data$state),select_out_df,num))
+        # state names are preserved thanks to split() 
+        out_matrix <- t(vapply(split(out_data, out_data$state), select_out_df, num, 
+                FUN.VALUE = list(2,unique(out_data$state))))
         rname <- as.character(row.names(out_matrix))
         out_matrix[,2] <- rname
         row.names(out_matrix) <-NULL
@@ -58,10 +61,54 @@ rankall <- function(outcome, num = "best"){
 }
 
 # Testing
+options(warn=-1)
+options(message=-1)
 
 head(rankall("heart attack", 20), 10)
 tail(rankall("pneumonia", "worst"), 3)
 tail(rankall("heart failure"), 10)
 
+
+# Method 2: data.table, which is way faster than Method 1
+rankall <- function(outcome, num = "best"){
+    # Read outcome data
+        require(data.table)
+        out_data <- fread("outcome-of-care-measures.csv")
+    # Shorten variables names for look-up
+        setnames(out_data, c(2, 7, 11, 17, 23), 
+            c("hospital", "state", "heart_attack", "heart_failure", "pneumonia")) 
+    # Check that num, state and outcome are valid
+        if(!outcome %in% c("heart attack", "heart failure", "pneumonia")) stop("invalid outcome")
+        if(class(num)=="character" && !num %in%  c("best", "worst")) stop("invalid num")
+        else if (class(num) != "numeric" && num <= 0) stop("invalid num")
+        outcome <- gsub(" ", "_", outcome) # For look-up
+        out_data <- out_data[, .SD, .SDcol=c("hospital", "state", outcome)]
+        out_data[,outcome] <- out_data[, as.numeric(get(outcome))]
+        out_data <- out_data[order(state, get(outcome), na.last = NA), 1:3]
+        
+        if (num == "best"){
+            out_data <- out_data[, .(hospital = head(hospital, 1)), by = state]
+            return(setcolorder(out_data, rev(names(out_data))))
+        }
+        else if (num == "worst"){
+            out_data <- out_data[, .(hospital = tail(hospital, 1)), by = state]
+            return(setcolorder(out_data, rev(names(out_data))))
+        }
+        else {
+            ref<-vapply(split(out_data, out_data$state), nrow, integer(1))
+            out_data <- out_data[ , tail(head(.SD, num), 1)
+                , by = state, .SDcols = c("hospital")]}
+            idx <- num > ref
+            out_data$hospital[idx] <- NA 
+        return(setcolorder(out_data, rev(names(out_data))))
+} 
+
+# Testing
+options(warn=-1)
+options(message=-1)
+
+head(rankall("heart attack", 20), 10)
+tail(rankall("pneumonia", "worst"), 3)
+tail(rankall("heart failure"), 10)
 
 
