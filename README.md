@@ -3,4 +3,4 @@
 
 Course 1: Data Scientist Toolbox (Completed)
 
-Course 2: R Programming (Week 4)
+Course 2: R Programming (Completed)
