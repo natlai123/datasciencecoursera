@@ -16,21 +16,21 @@
 corr <- function(directory, threshold = 0){
     # Since the function checks all files in the specdata, dynamic importing 
     # (in part 1 and 2) is not needed here. To take all files into account, use
-    files_input <- dir(directory, full.names = TRUE)
-    dlist <- lapply(files_input, data.table::fread)
-    data <- data.table::rbindlist(dlist)
+        files_input <- dir(directory, full.names = TRUE)
+        dlist <- lapply(files_input, data.table::fread)
+        data <- data.table::rbindlist(dlist)
     # remove NA items
-    data <- data[complete.cases(data)]
+        data <- data[complete.cases(data)]
     # Using data.table's feature (by=ID) to obtain obs num. and correlation within 
     # each sublist (eg 001.csv)  then chaining (imposing constraint) [N > threshold] 
     # to select only sublists that meet the threshold.  
-    data <- data[, .(nobs= .N, Correlation=cor(sulfate, nitrate)), by = ID][nobs > threshold]
+        data <- data[, .(nobs= .N, Correlation=cor(sulfate, nitrate)), by = ID][nobs > threshold]
     return(data[, Correlation])
 }
 
 # Checking 'corr'
 
-path = "~/Desktop/datasciencecoursera/S02_R_Programming/specdata"
+path = "~/Desktop/datasciencecoursera/S02_R_Programming/R_C2_data/specdata"
 
 cr <- corr(path, 150)
 head(cr)

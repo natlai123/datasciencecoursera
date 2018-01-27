@@ -11,7 +11,9 @@
 
 setwd("/Users/nathaniellai/Desktop/datasciencecoursera/S02_R_Programming/R_C2_data")
 
+
 # Method 1: Base R 
+
 rankhospital <- function(state, outcome, num = "best") {
     ## Read outcome data
         out_data <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
@@ -50,6 +52,7 @@ rankhospital <- function(state, outcome, num = "best") {
 
 # Testing
 options(warn=-1)
+options(message=-1)
 options(error=dump.frames)
 
 rankhospital("TX", "heart failure", 4)
@@ -61,11 +64,8 @@ rankhospital("MN", "heart attack", 5000)
 
 
 # Method 2: data.table, which is way faster than Method 1
-<<<<<<< HEAD
-rankhospital <- function(state, outcome, num = "best") {
-=======
-best <- function(state, outcome) {
->>>>>>> 282c306b97720c1aaff5a4926d54dd4be8677602
+
+rankhospital <- function(state, outcome, num = "best"){
     # Read outcome data
         require(data.table)
         out_data <- fread("outcome-of-care-measures.csv")
@@ -98,8 +98,6 @@ best <- function(state, outcome) {
 }
 
 # Testing
-options(warn=-1)
-options(error=dump.frames)
 
 rankhospital("TX", "heart failure", 4)
 # [1] "DETAR HOSPITAL NAVARRO"

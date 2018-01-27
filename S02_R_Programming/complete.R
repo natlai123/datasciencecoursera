@@ -15,10 +15,10 @@
 
 complete1 <- function(directory, id=1:332){
     # Creating a vector of directory path for importing csv file 
-    file_input <- paste0(directory, "/", formatC(id, width=3, flag="0"), ".csv")
+        file_input <- paste0(directory, "/", formatC(id, width=3, flag="0"), ".csv")
     # Dynamically loading required csv file(s) to a meta list 
     # then collapse the list into one data.frame 
-    data <- data.table::rbindlist(lapply(file_input, data.table::fread))
+        data <- data.table::rbindlist(lapply(file_input, data.table::fread))
     return(data[complete.cases(data), .(nobs=.N), by=ID])
     # The problem with this approach is it collapses ID where every data point is NA 
     # such that the ID number of the NA csv file disappears.
@@ -27,10 +27,10 @@ complete1 <- function(directory, id=1:332){
 complete2 <- function(directory, id=1:332){
     # Creating a vector of directory path for importing csv file 
     #file_input <- paste0(directory, "/", formatC(id, width=3, flag="0"), ".csv")
-    file_input <- paste0(directory, "/", stringr::str_pad(id, width=3, side = "left", pad = "0"), ".csv")
-    data <- lapply(file_input, data.table::fread)
-    data <- lapply(data, complete.cases)
-    nobs <- sapply(data, sum)
+        file_input <- paste0(directory, "/", stringr::str_pad(id, width=3, side = "left", pad = "0"), ".csv")
+        data <- lapply(file_input, data.table::fread)
+        data <- lapply(data, complete.cases)
+        nobs <- sapply(data, sum)
     return(data.frame(id, nobs))
 }
 
@@ -50,7 +50,7 @@ complete3 <- function(directory, id = 1:332){
 
 # Checking 'complete'
 
-path = "~/Desktop/datasciencecoursera/S02_R_Programming/specdata"
+path = "~/Desktop/datasciencecoursera/S02_R_Programming/R_C2_data/specdata"
 
 complete1(path, 1)
 complete1(path, c(2, 4, 8, 10, 12))

@@ -15,10 +15,10 @@
 
 pollutantmean <- function(directory, pollutant, id=1:332){
     # Creating a vector of directory path for importing csv file 
-    file_input <- paste0(directory, "/", formatC(id, width=3, flag="0"), ".csv")
+        file_input <- paste0(directory, "/", formatC(id, width=3, flag="0"), ".csv")
     # Dynamically loading required csv file(s) to a meta list 
     # then collapse the list into one data.frame 
-    data <- data.table::rbindlist(lapply(file_input,data.table::fread))
+        data <- data.table::rbindlist(lapply(file_input,data.table::fread))
     if (pollutant == "sulfate"){
         return(mean(data$sulfate, na.rm = TRUE))
         }
@@ -29,7 +29,7 @@ pollutantmean <- function(directory, pollutant, id=1:332){
 
 # Checking 'pollutantmean'
 
-path = "~/Desktop/datasciencecoursera/S02_R_Programming/specdata"
+path = "~/Desktop/datasciencecoursera/S02_R_Programming/R_C2_data/specdata"
 
 pollutantmean(directory = path, pollutant = "sulfate", 1:10) 
 
