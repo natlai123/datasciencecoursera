@@ -61,7 +61,11 @@ rankhospital("MN", "heart attack", 5000)
 
 
 # Method 2: data.table, which is way faster than Method 1
+<<<<<<< HEAD
 rankhospital <- function(state, outcome, num = "best") {
+=======
+best <- function(state, outcome) {
+>>>>>>> 282c306b97720c1aaff5a4926d54dd4be8677602
     # Read outcome data
         require(data.table)
         out_data <- fread("outcome-of-care-measures.csv")
