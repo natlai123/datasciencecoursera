@@ -31,7 +31,7 @@ rankhospital <- function(state, outcome, num = "best") {
     ## Return hospital name in that state with the given rank
     # filter State to be the input, state
         sub_out_data <- subset(out_data, out_data$State==state)
-    # select hospital_name and outcome, remove NA 
+    # select hospital_name and outcome, remove NA (not a pretty line of code but I will live with it for now)
         sub_out_data <-as.data.frame(list(sub_out_data[,2], sub_out_data[, outcome]), 
             col.names = c('hospital_name', outcome), stringsAsFactors = FALSE)[complete.cases(sub_out_data),]
     # arrange by outcome and then by hospital_name
@@ -98,6 +98,8 @@ rankhospital <- function(state, outcome, num = "best"){
 }
 
 # Testing
+options(warn=-1)
+options(message=-1)
 
 rankhospital("TX", "heart failure", 4)
 # [1] "DETAR HOSPITAL NAVARRO"
