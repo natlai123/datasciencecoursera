@@ -82,10 +82,11 @@ rankall <- function(outcome, num = "best"){
         if(class(num)=="character" && !num %in%  c("best", "worst")) stop("invalid num")
         else if (class(num) != "numeric" && num <= 0) stop("invalid num")
         outcome <- gsub(" ", "_", outcome) # For look-up
+    # Select num, state and outcome, remove NA, arrange by state, outcome, hospital      
         out_data <- out_data[, .SD, .SDcol=c("hospital", "state", outcome)]
         out_data[,outcome] <- out_data[, as.numeric(get(outcome))]
-        out_data <- out_data[order(state, get(outcome), na.last = NA), 1:3]
-        
+        out_data <- out_data[order(state, get(outcome), hospital, na.last = NA), 1:3]
+    # Flow Control to return a data frame with the hospital names and the (abbreviated) state name
         if (num == "best"){
             out_data <- out_data[, .(hospital = head(hospital, 1)), by = state]
             return(setcolorder(out_data, rev(names(out_data))))
@@ -98,6 +99,7 @@ rankall <- function(outcome, num = "best"){
             ref<-vapply(split(out_data, out_data$state), nrow, integer(1))
             out_data <- out_data[ , tail(head(.SD, num), 1)
                 , by = state, .SDcols = c("hospital")]}
+        # If num is larger than the number of hospitals in that state, return NA.
             idx <- num > ref
             out_data$hospital[idx] <- NA 
         return(setcolorder(out_data, rev(names(out_data))))
