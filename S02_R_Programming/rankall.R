@@ -16,7 +16,7 @@
 setwd("/Users/nathaniellai/Desktop/datasciencecoursera/S02_R_Programming/R_C2_data")
 
 # Method 1: Base R (Split-Apply-Combine)
-rankallb <- function(outcome, num = "best"){
+rankall <- function(outcome, num = "best"){
     # Read outcome data
         out_data <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
         out_data[, 11] <- as.numeric(out_data[, 11]) 
@@ -71,9 +71,19 @@ head(rankall("heart attack", 20), 10)
 tail(rankall("pneumonia", "worst"), 3)
 tail(rankall("heart failure"), 10)
 
+r <- rankall("heart attack", 4)
+as.character(subset(r, state == "HI")$hospital)
+# [1] "CASTLE MEDICAL CENTER"
+r <- rankall("pneumonia", "worst")
+as.character(subset(r, state == "NJ")$hospital)
+# [1] "BERGEN REGIONAL MEDICAL CENTER"
+r <- rankall("heart failure", 10)
+as.character(subset(r, state == "NV")$hospital)
+# [1] "RENOWN SOUTH MEADOWS MEDICAL CENTER"
+
 
 # Method 2: data.table, which is way faster than Method 1
-rankalld <- function(outcome, num = "best"){
+rankall <- function(outcome, num = "best"){
     # Read outcome data
         require(data.table)
         out_data <- fread("outcome-of-care-measures.csv")
@@ -116,4 +126,13 @@ head(rankall("heart attack", 20), 10)
 tail(rankall("pneumonia", "worst"), 3)
 tail(rankall("heart failure"), 10)
 
+r <- rankall("heart attack", 4)
+as.character(subset(r, state == "HI")$hospital)
+# [1] "CASTLE MEDICAL CENTER"
+r <- rankall("pneumonia", "worst")
+as.character(subset(r, state == "NJ")$hospital)
+# [1] "BERGEN REGIONAL MEDICAL CENTER"
+r <- rankall("heart failure", 10)
+as.character(subset(r, state == "NV")$hospital)
+# [1] "RENOWN SOUTH MEADOWS MEDICAL CENTER"
 
