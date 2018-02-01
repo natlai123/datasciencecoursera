@@ -1,4 +1,5 @@
 *.Rhistory
 *.Rproj
 packrat/
-
+.Rproj.user
+R_Note
