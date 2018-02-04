@@ -2,7 +2,7 @@
 # Quiz 1
 # Week 1
 
-# A few links to start:
+# A few links to get started:
 # https://thoughtfulbloke.wordpress.com/2015/09/09/getting-and-cleaning-week-1/
 # https://www.coursera.org/learn/data-cleaning/discussions/forums/h8cjA78DEeWtFA5RrsHG3Q/threads/g7wrg25DEeasOQpiYXGJHw
 # http://datasciencespecialization.github.io/getclean/    

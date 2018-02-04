@@ -42,6 +42,9 @@ req <- GET(url="https://api.github.com/users/jtleek/repos", config=gtoken)
 # Take action on http error
 ?stop_for_status
 stop_for_status(req)
+warn_for_status(req)
+message_for_status(req)
+# status: HTTP 200 -> code is good 
 
 # Extract content from a request
 json1 = content(req)
