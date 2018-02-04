@@ -1,4 +1,4 @@
-# S2_Getting_and_Cleaning_Data
+# S3_Getting_and_Cleaning_Data
 # Quiz 1
 # Week 1
 
