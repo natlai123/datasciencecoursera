@@ -2,7 +2,7 @@
 # Quiz 2
 # Week 2
 
-# To kick start:
+# To start:
 # https://github.com/lgreski/datasciencectacontent/blob/master/markdown/cleaningData-readingFiles.md
 
 
