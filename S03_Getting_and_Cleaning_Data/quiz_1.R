@@ -12,10 +12,9 @@ setwd("/Users/nathaniellai/Desktop/datasciencecoursera/S03_Getting_and_Cleaning_
 list.files()
 
 # Example 
-fileUrl <- "https://data.baltimorecity.gov/api/views/dz54-2aru/rows.csv?accessType=DOWNLOAD"
-download.file(fileUrl, destfile = "./cameras.csv", method ="curl")
-list.files()
-              
+fileUrl1 <- "https://data.baltimorecity.gov/api/views/dz54-2aru/rows.csv?accessType=DOWNLOAD"
+download.file(fileUrl1, destfile = paste0(getwd(), '/getdata%2Fdata%2Fss06hid.csv'), method = "curl")
+list.files() 
 
 # Q1: How many properties are worth $1,000,000 or more?
 
@@ -23,7 +22,7 @@ fileUrl1 <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv"
 download.file(fileUrl1, destfile = paste0(getwd(), '/getdata%2Fdata%2Fss06hid.csv'), method = "curl")
 list.files() 
 
-# Method 1
+# Method 1 readr package
 library(readr)
 ?read_csv
 q1 <- read_csv(paste(getwd(),"/getdata%2Fdata%2Fss06hid.csv"))
@@ -32,7 +31,7 @@ names(q1)
 sum(q1$VAL == 24, na.rm = TRUE)
 # Ans: 53
 
-# Method 2
+# Method 2 data.table package
 library(data.table)
 q1_dt <- fread("https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv")
 q1_dt[VAL == 24, .N]
@@ -53,7 +52,7 @@ download.file(fileUrl2, destfile = path, method = "curl")
 list.files() 
 # if the xlsx file already exits, it will be replaced by the new line of code.
 
-# Method 1
+# Method 1: readr package
 library(readxl)
 ?read_xlsx
 (dat <- read_xlsx(path = path, sheet = 1, range = cellranger::cell_limits(c(18,7), c(23,15))))
@@ -63,12 +62,12 @@ sum(dat$Zip*dat$Ext,na.rm=T)
 # ul vector specifying upper left cell of target rectangle, of the form c(ROW_MIN, COL_MIN)
 # lr vector specifying lower right cell of target rectangle, of the form c(ROW_MAX, COL_MAX)
 
-# Method 2
+# Method 2: utilis package
 (dat <- xlsx::read.xlsx(file = path, sheetIndex = 1, rowIndex = 18:23, colIndex = 7:15))
 sum(dat$Zip*dat$Ext,na.rm=T)
 # Ans: 36534720
 
-# Method 3
+# Method 3: XLConnect package
 # Attention !
 # Packages XLConnect and xlsx are not compatible and can not be loaded at the same time. 
 # Reason is that XLConnect (with XLConnectJars) and xlsx with (xlsxjars) ship with 
