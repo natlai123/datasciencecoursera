@@ -118,7 +118,8 @@ colNames <- c("space", "week", "space", "sstNino12", "space", "sstaNino12",
 
 data_sep <- read.fwf(url, width, header = FALSE, skip = 4, col.names = colNames)
 class(data_sep)
-d <- tbl_df(data_sep)
+d <- dplyr::tbl_df(data_sep)
+date <- lubridate::dmy(d$week) # Not Needed
 d[,which(stringr::str_detect(names(d), "space"))] <- NULL
 sum(d[,4])
 # Answer: 
