@@ -20,6 +20,7 @@ which(agricultureLogical)
 
 
 # Q2 
+# Use the parameter native=TRUE. What are the 30th and 80th quantiles of the resulting data? 
 
 #install.packages('jpeg')
 library(jpeg)
@@ -32,6 +33,9 @@ quantile(pic, probs = c(0.3, 0.8))
 
 
 # Q3
+# Match the data based on the country shortcode. How many of the IDs match? Sort the data frame 
+# in descending order by GDP rank (so United States is last). What is the 13th country in the 
+# resulting data frame?
 
 # M1: data.table
 library(data.table)
@@ -60,5 +64,53 @@ merge_df %>%
     tail(1)
     
 
+# Q4
+# What is the average GDP ranking for the "High income: OECD" and "High income: nonOECD" group?
+
+# M1: data.table
+merge_dt[`Income Group` == "High income: OECD",
+        lapply(.SD, mean),
+        .SDcols = c("rank"),
+        by = "Income Group"]
+
+merge_dt[`Income Group` == "High income: nonOECD",
+         lapply(.SD, mean),
+         .SDcols = c("rank"),
+         by = "Income Group"]
+
+# M2: dlpyr
+merge_df %>% 
+    select(contains("Income Group"), rank) %>% 
+    group_by(`Income Group`) %>% 
+    summarise(mean_rank = mean(rank)) %>% 
+    # To display numeric figures nicely, use the fomat function (but mean_rank becomes chr)
+    mutate_if(.predicate=is.numeric, 
+              .funs=format, 
+              trim=TRUE,
+              digits = 6)
 
 
+# Q5 
+
+# Cut the GDP ranking into 5 separate quantile groups. Make a table versus Income.Group. 
+# How many countries are Lower middle income but among the 38 nations with highest GDP?
+
+# M1 dyplr
+qgp <- quantile(as.numeric(merge_df$rank), seq(0, 1, 0.2), na.rm=TRUE)
+merge_df$gdpquantile <- cut(merge_df$rank, breaks = qgp)
+
+merge_df %>% 
+    group_by(`Income Group`, gdpquantile) %>% 
+   #select(`Income Group`, gdpquantile) %>% 
+    filter(`Income Group` == "Lower middle income") %>% 
+    summarise(N = n())
+
+#M2 data.table
+qgp <- quantile(as.numeric(merge_dt$rank), seq(0, 1, 0.2), na.rm=TRUE)
+merge_dt$gdpquantile <- cut(merge_dt$rank, breaks = qgp,  ordered_result = TRUE)
+
+merge_dt[`Income Group` == "Lower middle income", 
+         .N, 
+         by = c("Income Group", "gdpquantile")][order(gdpquantile)]
+
+# Ans = 5
