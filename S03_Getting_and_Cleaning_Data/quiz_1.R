@@ -25,7 +25,7 @@ list.files()
 # Method 1 readr package
 library(readr)
 ?read_csv
-q1 <- read_csv(paste(getwd(),"/getdata%2Fdata%2Fss06hid.csv"))
+q1 <- read_csv(paste0(getwd(),"/getdata%2Fdata%2Fss06hid.csv"))
 names(q1)
 # From the code book, the variable to check is "VAL" and the category is 24
 sum(q1$VAL == 24, na.rm = TRUE)
