@@ -19,7 +19,7 @@
 
 
 #### Set working directory to where data are held (IMPORTANT)
-setwd("/Users/nathaniellai/Desktop/datasciencecoursera/S03_Getting_and_Cleaning_Data/RC3_data")
+setwd("/Users/nathaniellai/Desktop/datasciencecoursera/S03_Getting_and_Cleaning_Data/C3project")
 #list.files()
 
 #### Import packages 
