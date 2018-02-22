@@ -18,13 +18,15 @@
 ####################################################################################################
 
 
-#### Set working directory to where data are held (IMPORTANT)
+#### Set working directory (IMPORTANT)
 setwd("/Users/nathaniellai/Desktop/datasciencecoursera/S03_Getting_and_Cleaning_Data/C3project")
 #list.files()
 
+
 #### Import packages 
-purrr::map_lgl(c("data.table", "stringr", "rebus", "dplyr"), require, character.only=TRUE, quietly=TRUE)
+purrr::map_lgl(c("data.table", "stringr", "dplyr"), require, character.only=TRUE, quietly=TRUE)
 path <- getwd()
+
 
 #### Download UCI HAR dataset
 if(!file.exists("getdata_dataset.zip") | !file.exists("UCI HAR Dataset")){
@@ -34,15 +36,17 @@ if(!file.exists("getdata_dataset.zip") | !file.exists("UCI HAR Dataset")){
 }
 #list.files()
 
+
 #### Import activity labels and features to R
 activityLabels <- fread("UCI HAR Dataset/activity_labels.txt", col.names = c("index", "activity"))
 features <- fread("UCI HAR Dataset/features.txt", col.names = c("index", "featuresName"))
 
+
 #### Generate index for mean and standard deviation of each measurement for extraction
 featuresIndex <- grep("(mean|std)\\(\\)", features$featuresName)
 ## Remember to include "()" by escaping it, see the difference between
-# str_view(features$featuresName, or("mean", "std") %R% "\\(\\)", match = T)
-# str_view(features$featuresName, or("mean", "std") %R% "()", match = T)
+# rebus::str_view(features$featuresName, or("mean", "std") %R% "\\(\\)", match = T)
+# rebus::str_view(features$featuresName, or("mean", "std") %R% "()", match = T)
 length(featuresIndex) 
 # 66 measurements on the mean and standard deviation of features
 
@@ -105,9 +109,9 @@ one_dataset$activity <- factor(one_dataset$activity,
 
 data_mean_std <- one_dataset %>% select(activity, subjectNum, measurements)
 
-#### Remove unwanted datasets 
+#### Remove unwanted datasets and variables
 rm(list = c("features", "activityLabels", "test", "train", "xtest", "ytest", "measurements", 
-            "xtrain", "ytrain", "subject_test", "subject_train", "featuresIndex", "path"))
+            "xtrain", "ytrain", "subject_test", "subject_train", "featuresIndex", "path", "url"))
 
 
 ##########################################################################################

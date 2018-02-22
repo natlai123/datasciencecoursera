@@ -26,8 +26,7 @@ This folder contains:
 5. Creates a second, independent tidy data set with the average of
    each variable for each activity and each subject.   
    
-`CodeBook.md` explains the R script, `run_analysis.R`. It documents the following:
+`CodeBook.md` explains the R script, `run_analysis.R` by documenting the steps of cleaning and tidying the original data.  
 
-1. The steps of cleaning and tidying data.  
-2. The constuction and rationale of the chosen descriptive activity names. 
+Before proceeding, users should have installed the R software. If not one can download R for free from <https://www.r-project.org/>.
 
