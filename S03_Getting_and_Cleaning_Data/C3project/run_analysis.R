@@ -124,7 +124,11 @@ data_Mean <- data_mean_std %>%
         summarise_all(.funs=mean)
 
 #### Creating the final dataset, tidy_data.txt    
-fwrite(x = data_Mean, file = "tidy_data.txt", quote = FALSE)
+write.table(x = data_Mean, file = "tidy_data.txt", row.name = FALSE, quote = FALSE)
+
+# fwrite(x = data_Mean, file = "tidy_data.txt", quote = FALSE) 
+## Using fwrite() will create a comma delimited text file
+
 
 
 

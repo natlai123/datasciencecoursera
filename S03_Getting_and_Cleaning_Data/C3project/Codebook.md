@@ -75,7 +75,7 @@ d) Correcting the typo `BodyBody` to `Body` in `features.txt` (line 516 to 554).
 
 ## The Final Clean Dataset
 
-The last line of code of `run_analysis.R` creates `tidy_data.txt`. `tidy_data.txt` is a comma delimited test file, if imported appropriately, should contains 180 observations of 68 variables. The composite primary key of `tidy_data.txt` is `activity` and `subjectNum`.
+The last line of code of `run_analysis.R` creates `tidy_data.txt`. `tidy_data.txt` is a space delimited test file, if imported appropriately, should contains 180 observations of 68 variables. The composite primary key of `tidy_data.txt` is `activity` and `subjectNum`.
 
 
 
