@@ -20,7 +20,7 @@
 
 #### Set working directory (IMPORTANT)
 setwd("/Users/nathaniellai/Desktop/datasciencecoursera/S03_Getting_and_Cleaning_Data/C3project")
-#list.files()
+list.files()
 
 
 #### Import packages 
@@ -122,6 +122,12 @@ rm(list = c("features", "activityLabels", "test", "train", "xtest", "ytest", "me
 data_Mean <- data_mean_std %>% 
     group_by(activity, subjectNum) %>% 
         summarise_all(.funs=mean)
+
+# This works the same as the line above 
+# data_a <- reshape2::recast(data_mean_std, subjectNum + activity~variable,
+#             mean, id.var=c("subjectNum","activity"))
+# data_b <- aggregate(. ~subjectNum + activity, data_mean_std, mean)
+# setequal(data_a, data_b, data_Mean)
 
 #### Creating the final dataset, tidy_data.txt    
 write.table(x = data_Mean, file = "tidy_data.txt", row.name = FALSE, quote = FALSE)

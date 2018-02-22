@@ -1,8 +1,8 @@
 # Getting and Cleaning Data Prokect Code book 
 
-This Code Book is best read with the R script, `run_analysis.R` in the folder `C3project` as it explains the script by documenting the steps of cleaning and tidying the original data from UCI HAR Dataset.  
+This Code Book is best read with the R script `run_analysis.R` in the folder `C3project` as it explains the script by documenting the steps of cleaning and tidying the original data from UCI HAR Dataset.  
 
-Before proceeding, users should have installed the R software. If not one can download R for free from <https://www.r-project.org/>. The R packages used in `run_analysis.R` are `purrr`, `data.table`, `stringr` and  `dplyr` (the `rebus` package are used to check the regular expression in the script but not installing the package will not hinder the functioning of the script).
+Before proceeding, users should have installed the R software. If not, one can download R for free from <https://www.r-project.org/>. The R packages used in `run_analysis.R` are `purrr`, `data.table`, `stringr` and  `dplyr` (the `rebus` package is used to check the regular expression in the script but not installing the package will not hinder the functioning of the script).
 
 ## The Original Dataset
 
