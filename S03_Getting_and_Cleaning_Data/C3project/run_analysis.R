@@ -129,11 +129,12 @@ data_Mean <- data_mean_std %>%
 # data_b <- aggregate(. ~subjectNum + activity, data_mean_std, mean)
 # setequal(data_a, data_b, data_Mean)
 
+
 #### Creating the final dataset, tidy_data.txt    
 write.table(x = data_Mean, file = "tidy_data.txt", row.name = FALSE, quote = FALSE)
+# same as:
+# fwrite(x = data_Mean, file = "tidy_data.txt", sep = " ", quote = FALSE) 
 
-# fwrite(x = data_Mean, file = "tidy_data.txt", quote = FALSE) 
-## Using fwrite() will create a comma delimited text file
 
 
 
