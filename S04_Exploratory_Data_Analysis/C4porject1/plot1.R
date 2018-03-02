@@ -69,12 +69,14 @@ png(filename = "plot1.png", width = 480, height = 480)
 
 #### Construct plot 1
 hist(powerdf$Global_active_power, 
-     main="Global Active Power",
-     xlab="Global Active Power (kilowatts)", 
-     ylab="Frequency", col="Red")
+     main = "Global Active Power",
+     xlab = "Global Active Power (kilowatts)", 
+     ylab = "Frequency", 
+     col = "Red")
 
 
 dev.off()
+
 
 
 # # For a quick plot of all variables, see https://www.r-bloggers.com/quick-plot-of-all-variables/
