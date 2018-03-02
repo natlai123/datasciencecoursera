@@ -65,11 +65,11 @@ powerdf$datetime <- lubridate::ymd_hms(powerdf$datetime)
 # powerdf$datetime<- xts(powerdf$datetime)
 
 
-#### Prepare to save to png file
+#### Start png device
 png(filename = "plot2.png", width = 480, height = 480)
 
 
-#### Construct plot 1
+#### Construct plot 2
 plot(x = powerdf$datetime, 
      y = powerdf$Global_active_power, 
      type="l",
@@ -77,6 +77,7 @@ plot(x = powerdf$datetime,
      xlab = "")
 
 
+#### Save plot 2
 dev.off()
 
 

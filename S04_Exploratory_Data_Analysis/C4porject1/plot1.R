@@ -62,7 +62,7 @@ powerdf <- powerdf %>%
 # summary(powerdf) # same no. of NA across variables
 
 
-#### Prepare to save to png file
+#### Start png device
 png(filename = "plot1.png", width = 480, height = 480)
 
 
@@ -74,6 +74,7 @@ hist(powerdf$Global_active_power,
      col = "Red")
 
 
+#### Save plot 1
 dev.off()
 
 
