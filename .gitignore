@@ -5,3 +5,5 @@ packrat/
 R_Note
 .httr-oauth
 *.DS_Store
+dataFiles.zip
+household_power_consumption.txt
