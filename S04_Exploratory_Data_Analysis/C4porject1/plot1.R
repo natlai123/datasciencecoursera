@@ -1,4 +1,4 @@
-# S04_Getting_and_Cleaning_Data
+# S04_Exploratory_Data_Analysis
 # Project 1 
 # Week 1
 # Nathaniel Lai
