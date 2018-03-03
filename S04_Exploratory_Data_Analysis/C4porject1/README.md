@@ -34,10 +34,10 @@ The following descriptions of the 9 variables in the dataset are taken from the 
 ![Plot 1](/Users/nathaniellai/Desktop/datasciencecoursera/S04_Exploratory_Data_Analysis/C4porject1/plot1.png)
 
 #### Plot 2
-![Plot 1](/Users/nathaniellai/Desktop/datasciencecoursera/S04_Exploratory_Data_Analysis/C4porject1/plot2.png)
+![Plot 2](/Users/nathaniellai/Desktop/datasciencecoursera/S04_Exploratory_Data_Analysis/C4porject1/plot2.png)
 
 #### Plot 3
-![Plot 1](/Users/nathaniellai/Desktop/datasciencecoursera/S04_Exploratory_Data_Analysis/C4porject1/plot3.png)
+![Plot 3](/Users/nathaniellai/Desktop/datasciencecoursera/S04_Exploratory_Data_Analysis/C4porject1/plot3.png)
 
 #### Plot 4
-![Plot 1](/Users/nathaniellai/Desktop/datasciencecoursera/S04_Exploratory_Data_Analysis/C4porject1/plot4.png)
+![Plot 4](/Users/nathaniellai/Desktop/datasciencecoursera/S04_Exploratory_Data_Analysis/C4porject1/plot4.png)
