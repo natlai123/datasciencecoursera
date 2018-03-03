@@ -74,18 +74,19 @@ png(filename = "plot4.png", width = 480, height = 480)
 
 par(mfrow = c(2,2))
 
+## Subplot 1
 plot(x = powerdf$datetime, 
      y = powerdf$Global_active_power,
      type="l",
      ylab = "Global Active Power",
      xlab = "")
 
-
+## Subplot 2
 with(powerdf, plot(x = datetime, 
      y = Voltage,
      type="l"))
 
-
+## Subplot 3
 plot(x = powerdf$datetime, 
      y = powerdf$Sub_metering_1, 
      type = "l",
@@ -107,7 +108,7 @@ legend("topright",
        bty = "n", 
        cex = 0.9) 
 
-
+## Subplot 4
 with(powerdf, plot(x = datetime, 
      y = Global_reactive_power,
      type="l"))
