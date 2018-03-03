@@ -65,7 +65,6 @@ powerdf$datetime <- as.POSIXct(strptime(powerdf$datetime,
 # powerdf$datetime<- xts(powerdf$datetime)
 
 
-
 #### Start png device
 png(filename = "plot4.png", width = 480, height = 480)
 
