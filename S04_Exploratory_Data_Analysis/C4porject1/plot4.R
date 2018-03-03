@@ -1,6 +1,6 @@
 # S04_Exploratory_Data_Analysis
 # Assignment 1
-# Plot 2
+# Plot 4
 # Nathaniel Lai
 
 ####################################################################################################
@@ -11,7 +11,7 @@
 
 # Examine how household energy usage varies over a 2-day period in February, 2007
 
-# Constructs plot 2 and save it to a PNG file with a width of 480 pixels and a height of 480 pixels.
+# Constructs plot 4 and save it to a PNG file with a width of 480 pixels and a height of 480 pixels.
 
 
 ####################################################################################################
@@ -54,29 +54,71 @@ powerdf <- read_delim(file="household_power_consumption.txt",
 
 #### Filter data to focus on February, 2007
 powerdf <- powerdf %>% 
-    filter(Date >= "2007-02-01" & Date <= "2007-02-02")
+  filter(Date >= "2007-02-01" & Date <= "2007-02-02")
 
 
 #### Format Timstamps 
 powerdf <- unite(powerdf, datetime, Date, Time)
-powerdf$datetime <- lubridate::ymd_hms(powerdf$datetime)
-# powerdf$datetime <- as.POSIXct(strptime(powerdf$datetime, 
-#        format="%Y-%m-%d_%H:%M:%S", tz = "GMT"))
+powerdf$datetime <- as.POSIXct(strptime(powerdf$datetime, 
+      format="%Y-%m-%d_%H:%M:%S", tz = "GMT"))
+# powerdf$datetime <- lubridate::ymd_hms(powerdf$datetime)
 # powerdf$datetime<- xts(powerdf$datetime)
 
 
+
 #### Start png device
-png(filename = "plot2.png", width = 480, height = 480)
+png(filename = "plot4.png", width = 480, height = 480)
 
 
-#### Construct plot 2
+#### Construct plot 4
+
+par(mfrow = c(2,2))
+
 plot(x = powerdf$datetime, 
-     y = powerdf$Global_active_power, 
+     y = powerdf$Global_active_power,
      type="l",
-     ylab = "Global Active Power (kilowatts)",
+     ylab = "Global Active Power",
      xlab = "")
 
 
-#### Save plot 2
+with(powerdf, plot(x = datetime, 
+     y = Voltage,
+     type="l"))
+
+
+plot(x = powerdf$datetime, 
+     y = powerdf$Sub_metering_1, 
+     type = "l",
+     ylab = "Energy sub metering",
+     xlab = "")
+
+lines(x = powerdf$datetime, 
+      y = powerdf$Sub_metering_2, 
+      col = "red")
+
+lines(x = powerdf$datetime, 
+      y = powerdf$Sub_metering_3, 
+      col = "blue")
+
+legend("topright", 
+       col = c("black","red","blue"), 
+       c("Sub_metering_1  ", "Sub_metering_2  ", "Sub_metering_3  "), 
+       lty = c(1,1), 
+       bty = "n", 
+       cex = 0.9) 
+
+
+with(powerdf, plot(x = datetime, 
+     y = Global_reactive_power,
+     type="l"))
+
+
+#### Save plot 4
+
+# dev.copy(png, file="plot4.png", width = 480, height = 480)
+# Caution !!! This line does not work as expected. 
+# See https://www.coursera.org/learn/exploratory-data-analysis/discussions/weeks/1/threads/jeKSTY29EeaQYRKcXQcKHQ
+# https://www.coursera.org/learn/exploratory-data-analysis/discussions/weeks/1/threads/0RtgW7_rEeWcswoHkJGdXQ
+
 dev.off()
 

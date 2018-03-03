@@ -72,7 +72,7 @@ png(filename = "plot3.png", width = 480, height = 480)
 #### Construct plot 3
 plot(x = powerdf$datetime, 
      y = powerdf$Sub_metering_1, 
-     type="l",
+     type = "l",
      ylab = "Energy sub metering",
      xlab = "",
      col = "black")
@@ -86,21 +86,11 @@ lines(x = powerdf$datetime,
       col = "blue")
 
 legend("topright",
-       col = c("black","red","blue"),
+       col = c("black", "red", "blue"),
        c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"),
        lty = c(1,1), 
        lwd = c(1,1))
 
 #### Save plot 3
 dev.off()
-
-
-
-
-
-
-
-
-
-
 
