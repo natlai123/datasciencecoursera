@@ -27,36 +27,39 @@ I suggested beginners start by reading and playing around the code in Garrett Gr
 
 Everything is still work in progress and there is no end to learning. Taking MOOC courses is a great way to learn. But the effort lies in practices, note-taking and code-writing. Currently, the content page of all my notes is like:
 
-1. R Data Structure
-2. R Object-Oriented Programming: S3
-3. R Functional Programming purrr
-4. R Object-Oriented Programming: R6
-5. R & csv, xlsx
-6. R & Other statistical software packages
-7. R & Database
-8. R & Web
-9. R & JSON
-10. R & XML
-11. R & Importing and Managing Financial Data
-12. R tidyr
-13. R lubridate
-14. R xts & zoo
-15. R & Time Series Data (1)
-16. R String
-17. R Rebus & Regular Expression
-18. R dplyr
-19. R Data.Table
+1. R Programming (0) Data Structure
+2. R Programming (1) Object-Oriented: S3
+3. R Programming (2) Functional purrr
+4. R Programming (3) Object-Oriented: R6
+5. R Importing Data (1) csv, xlsx 
+6. R Importing Data (2) Other statistical software packages
+7. R Importing Data (3) Database 
+8. R Importing Data (4) Web 
+9. R Importing Data (5) JSON
+10. R Importing Data (5) XML 
+11. R Importing Data (6) Financial Data
+12. R Time Series (1) lubridate
+13. R Time Series (2) xts & zoo 
+14. R Time Series (3) ARIMA
+15. R Data Manipulation (1) tidyr 
+16. R Data Manipulation (2) String
+17. R Data Manipulation (3) Rebus & Regular Expression
+18. R Data Manipulation (4) dplyr
+19. R Data Manipulation (5) data.Table
 20. R Markdown and Studio Shortcuts
-21. R Base Visualization
-22. R Graphics Device, Lattice Plotting System and Colour
-23. R & Time Series Data Visualization
-24. R ggplot2 (1)
-25. R ggplot2 (2)
-26. R ggplot2 (3)
-27. R ggplot2 (4)
-28. R & EDA
-29. R Inference, Correlation and Regression
-30. R Financial Trading
+21. R Visualization (1) Base 
+22. R Visualization (2) Graphics Device and Colour
+23. R Visualization (3) Lattice Plotting System
+24. R Visualization (4) Time Series Data
+25. R Visualization (5) ggplot2 (1) 
+26. R VisualizatioN (6) ggplot2 (2)
+27. R Visualization (7) ggplot2 (3)
+28. R Visualization (8) ggplot2 (4)
+29. R Statistic (1) Exploratory Data Analysis 
+30. R Statistic (2) Inference, Correlation and Regression
+31. R Statistic (3) Hierarchical Clustering, K-means Clustering, PCA 
+32. R Finance (1) Financial Trading
+33. R Finance (2) qrmdata
 
 
 Along the way, learning database concepts and languages such as JSON, XML, and SQL (Introduction to Databases by Stanford Lagunita is a good source), text mining using regular expression and version control (Git) will compliment learning R well.
@@ -73,6 +76,8 @@ In the coming months, I will continue to digest the following material:
 * Gareth James et al. (2013), An Introduction to Statistical Learning
 * Hastie et al. (2009) The Elements of Statistical Learning, 2nd Edition Springer
 * Ruey S. Tsay (2010) Analysis of Financial Time Series, Third Edition, Wiley
+* Rob J Hyndman, George Athanasopoulos, (2017) Forecasting: principles and practice
+
 
 For some of the books, I have already had produced a few notes. If time allows, I will put out them out on Github as well.
 
