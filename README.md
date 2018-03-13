@@ -61,14 +61,12 @@ Everything is still work in progress and there is no end to learning. Taking MOO
 32. R Finance (1) Financial Trading
 33. R Finance (2) qrmdata
 
-
 Along the way, learning database concepts and languages such as JSON, XML, and SQL (Introduction to Databases by Stanford Lagunita is a good source), text mining using regular expression and version control (Git) will compliment learning R well.
 
 In the coming months, I will continue to digest the following material:
 
 * Garrett Grolemund (2014) Hands-On Programming with R
 * Hadley Wickham, Garrett Grolemund (2016) R for Data Science http://r4ds.had.co.nz/index.htm
-*
 * Hadley Wickham (2010) ggplot2: Elegant Graphics for Data Analysis 
 * Hadley Wickham (2018) Advanced R https://adv-r.hadley.nz/introduction.html
 * Roger D. Peng, Elizabeth Matsui (2015) The Art of Data Science: A Guide for Anyone Who Works with Data
@@ -76,8 +74,7 @@ In the coming months, I will continue to digest the following material:
 * Gareth James et al. (2013), An Introduction to Statistical Learning
 * Hastie et al. (2009) The Elements of Statistical Learning, 2nd Edition Springer
 * Ruey S. Tsay (2010) Analysis of Financial Time Series, Third Edition, Wiley
-* Rob J Hyndman, George Athanasopoulos, (2017) Forecasting: principles and practice
-
+* Rob J Hyndman, George Athanasopoulos, (2017) Forecasting: Principles and Practice
 
 For some of the books, I have already had produced a few notes. If time allows, I will put out them out on Github as well.
 
