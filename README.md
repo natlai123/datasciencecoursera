@@ -9,7 +9,6 @@
 
 *Course 4: Exploratory Data Analysis (In Progress)*
 
-
 # A Brief Reflection on Learning R
 
 Over the past two months, I have been focusing on learning the statistical software programming language, R. I was told that the learning curve for R is steep. And it is. But the journey is surprisingly fun and eye-opening. Leaning R is more than learning its syntax. It, more importantly, involves the thinking and approach to conduct data analysis, particularly if one dives into “Tidyverse”. It is about time for me to sit down and reflect on how far I have got and where I am heading.
