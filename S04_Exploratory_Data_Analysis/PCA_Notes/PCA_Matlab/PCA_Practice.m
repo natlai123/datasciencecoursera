@@ -53,6 +53,15 @@ score_3 = score;
 score_3(:,4:6)=0;
 P_3pc=([score_3]*coeff'.*[sd1 sd2 sd3 sd5 sd10 sd30])+ [M1 M2 M3 M5 M10 M30];
 
+
+% ?Note that PCA is closely related to  Singular value decomposition (SVD). 
+% The principal components are equal to the right singular values if you 
+% first scale (subtract the mean, divide by the standard deviation) the variables. 
+% For instance, Dowd (2005)'s code (such as PCAVAR and PCAELT) use the SVD instead. 
+% The code below calculates the differences between the two methods and confirms 
+% the result (see comment).
+
+
 % Method 2: SVD 
 [U,S,V] =svd(P_N,0);
 S_diag = [(svds(P_N,3)); zeros(1,3)']
@@ -96,13 +105,13 @@ ylabel('2nd Principal Component')
 %gname
 pause(1);
 
-%Create scree plot.
+% Generate figure_03 (scree plot)
 figure()
 pareto(explained)
 xlabel('Principal Component')
 ylabel('Variance Explained (%)')
 
 
-%g=1:373;
+% g = 1:373;
 % gscatter3(x,y,z,g,{'b','g','m'},{'.','.','.'}); 
 % Nevermind this function can only handle up to 128 groups.
