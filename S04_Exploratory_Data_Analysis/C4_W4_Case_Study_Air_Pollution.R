@@ -13,7 +13,7 @@ cnames <- readLines("RD_501_88101_1999-0.txt", 1)
 print(cnames)
 cnames <- strsplit(cnames, "|", fixed = TRUE)
 print(cnames)
-names(pm0) <- make.names(cnames[[1]])
+names(pm0) <- make.names(cnames[[1]]) # "makes syntactically valid names"
 head(pm0)
 x0 <- pm0$Sample.Value
 class(x0)
@@ -34,6 +34,8 @@ class(x1)
 summary(x1)
 summary(x0)
 mean(is.na(x1))  ## Are missing values important here? Around 5%
+# Both the median and the mean of measured particulate matter have declined from 1999 to 2012. In
+# fact, all of the measurements, except for the maximum and missing values (Max and NA's), have decreased.
 
 ## Make a boxplot of both 1999 and 2012
 boxplot(x0, x1)
@@ -50,6 +52,14 @@ dates <- as.Date(as.character(dates), "%Y%m%d")
 str(dates)
 hist(dates, "month")  ## Check what's going on in months 1--6
 hist(dates[negative], "month") 
+
+# We see the bulk of the negative measurements were taken in the winter months, with a spike in May. Not many
+# of these negative measurements occurred in summer months. We can take a guess that because particulate
+# measures tend to be low in winter and high in summer, coupled with the fact that higher densities are easier
+# to measure, that measurement errors occurred when the values were low. For now we'll attribute these
+# negative measurements to errors. Also, since they account for only 2% of the 2012 data, we'll ignore them.
+
+
 
 ## Plot a subset for one monitor at both times
 
@@ -96,7 +106,8 @@ par(mfrow = c(1, 2), mar = c(4, 4, 2, 1))
 plot(dates0, x0sub, pch = 20)
 abline(h = median(x0sub, na.rm = T))
 plot(dates1, x1sub, pch = 20)  ## Whoa! Different ranges
-abline(h = median(x1sub, na.rm = T))
+abline(h = median(x1sub, na.rm = T)) 
+# 1999 median is larger 
 
 ## Find global range
 rng <- range(x0sub, x1sub, na.rm = T)
@@ -112,8 +123,12 @@ head(pm0)
 mn0 <- with(pm0, tapply(Sample.Value, State.Code, mean, na.rm = T))
 str(mn0)
 summary(mn0)
+# Why 53 if there are only 50 states? As it happens, pm25 measurements for the District of 
+# Columbia (Washington D.C), the Virgin Islands, and Puerto Rico are included in this data. 
+# They are coded as 11, 72, and 78 respectively.
 mn1 <- with(pm1, tapply(Sample.Value, State.Code, mean, na.rm = T))
 str(mn1)
+# 52 entries because there are no entries for the Virgin Islands in 2012.
 summary(mn1)
 
 ## Make separate data frames for states / years
@@ -141,7 +156,10 @@ with(mrg, points(rep(2012, 52), mrg[, 3]))
 # connected the dots
 segments(rep(1999, 52), mrg[, 2], rep(2012, 52), mrg[, 3]) # Connect Dots
 
+# The vast majority of states have indeed improved their particulate matter counts so 
+# the general trend is downward. There are a few exceptions. (The topmost point in the 
+# 1999 column is actually two points that had very close measurements.)
 
-
-
+# 4 states had higher means in 2012 than in 1999
+mrg[mrg$mean.x < mrg$mean.y, ]
 
