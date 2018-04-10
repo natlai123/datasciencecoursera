@@ -19,7 +19,7 @@ list.files()
 
 
 #### Import Packages 
-purrr::map_lgl(c("data.table", "stringr", "dplyr"), require, character.only=TRUE, quietly=TRUE)
+purrr::map_lgl(c("tidyverse"), require, character.only = TRUE, quietly = TRUE)
 path <- getwd()
 
 
@@ -31,20 +31,34 @@ if(!file.exists("exdata%2Fdata%2FNEI_data.zip") | !file.exists("exdata%2Fdata%2F
 }
 dir()
 
-#### Import Data to R (This first line will likely take a few seconds. Be patient!)
-NEI <- readRDS("summarySCC_PM25.rds")
-SCC <- readRDS("Source_Classification_Code.rds")
-head(NEI)
-head(SCC)
+
+#### Import Data to R (The first line takes a few seconds.)
+NEI <- readRDS(file = "summarySCC_PM25.rds")
+SCC <- readRDS(file = "Source_Classification_Code.rds")
+# head(NEI)
+# head(SCC)
 
 
-NEI[, Emissions := lapply(.SD, as.numeric), .SDcols = c("Emissions")]
+#### Start png device
+png(filename = "plot1.png", width = 480, height = 480)
 
-totalNEI <- NEI[, lapply(.SD, sum, na.rm = TRUE), .SDcols = c("Emissions"), by = year]
 
-with(totalNEI, plot(year, Emissions, type="l", xlim = c(1998, 2009), ylim = c(0, 8000000), xlab = "Years", ylab = "Emissions", main = "Emissions over the Years"))
+#### Generate plot1.R
+NEI_total <- NEI %>% 
+    select(Emissions, year) %>% 
+    group_by(year) %>% 
+    summarise(Emissions_year = sum(Emissions))
+par(mar=c(3.5, 3.5, 2, 1), mgp=c(2.4, 0.8, 0));
+bar <- with(NEI_total, barplot(Emissions_year, names = year, 
+            xlab = "Years", 
+            ylab = "Emissions", 
+            ylim = c(0, 8000000),
+            main = "Emissions over the Years"))
+with(NEI_total, lines(x=bar, y=Emissions_year))
+with(NEI_total, points(x=bar, y=Emissions_year))
 
-barplot(totalNEI[, Emissions]
-        , names = totalNEI[, year]
-        , xlab = "Years", ylab = "Emissions"
-        , main = "Emissions over the Years")
+#### Save plot 1
+dev.off()
+
+# The bar charts in plot1.R demonstrates a declining trend of total PM2.5 emission 
+# from all sources in years 1999, 2002, 2005, and 2008.  
