@@ -40,22 +40,23 @@ SCC <- readRDS(file = "Source_Classification_Code.rds")
 
 
 #### Start png device
-png(filename = "plot1.png", width = 480, height = 480)
+png(filename = "plot1.png", width = 600, height = 600, units = "px", bg = "white")
 
 
 #### Generate plot1.R
 NEI_total <- NEI %>% 
     select(Emissions, year) %>% 
     group_by(year) %>% 
-    summarise(Emissions_year = sum(Emissions))
-par(mar=c(3.5, 3.5, 2, 1), mgp=c(2.4, 0.8, 0));
+    summarise(Emissions_year = round(sum(Emissions)/1000000, digits = 2))
+par(mar=c(3.5, 3.5, 2, 1), mgp=c(2, 0.7, 0))
 bar <- with(NEI_total, barplot(Emissions_year, names = year, 
             xlab = "Years", 
-            ylab = "Emissions", 
-            ylim = c(0, 8000000),
-            main = "Emissions over the Years"))
-with(NEI_total, lines(x=bar, y=Emissions_year))
-with(NEI_total, points(x=bar, y=Emissions_year))
+            ylab = expression("PM"[2.5] * " Emissions (million tonnes)"), 
+            ylim = c(0, 8),
+            main = expression("US Annual PM"[2.5] * " Emissions")))
+with(NEI_total, text(x = bar, Emissions_year, Emissions_year, adj=c(0,-0.8)))
+with(NEI_total, lines(x = bar, y=Emissions_year, lwd = 2))
+with(NEI_total, points(x = bar, y=Emissions_year))
 
 #### Save plot 1
 dev.off()

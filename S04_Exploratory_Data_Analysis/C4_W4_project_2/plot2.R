@@ -18,7 +18,7 @@ list.files()
 
 
 #### Import Packages 
-purrr::map_lgl(c("data.table"), require, character.only = TRUE, quietly = TRUE)
+library(data.table)
 path <- getwd()
 
 
@@ -34,31 +34,29 @@ dir()
 #### Import Data to R (The first line takes a few seconds.)
 NEI <- as.data.table(readRDS(file = "summarySCC_PM25.rds"))
 SCC <- as.data.table(readRDS(file = "Source_Classification_Code.rds"))
-# head(NEI)
-# head(SCC)
-
 
 #### Start png device
-# png(filename = "plot2.png", width = 480, height = 480)
+png(filename = "plot2.png", width = 600, height = 600)
 
 
 #### Generate plot2.R
-
-Baltimore  <- NEI %>% 
-    select(Emissions, year) %>% 
-    group_by(year) %>% 
-    summarise(Emissions_year = sum(Emissions))
-par(mar=c(3.5, 3.5, 2, 1), mgp=c(2.4, 0.8, 0));
-bar <- with(NEI_total, barplot(Emissions_year, names = year, 
+Baltimore <- NEI[fips=='24510', lapply(.SD, sum, na.rm = TRUE)
+                , .SDcols = c("Emissions")
+                , by = year]
+Baltimore$Emissions <- round(Baltimore$Emissions, 2)
+par(mar=c(3.5, 3.5, 2, 1), mgp=c(2, 0.7, 0))
+bar <- with(Baltimore, barplot(Emissions, names = year, col = "blue",
                                xlab = "Years", 
-                               ylab = "Emissions", 
-                               ylim = c(0, 8000000),
-                               main = "Emissions over the Years"))
-with(NEI_total, lines(x=bar, Emissions_year))
-with(NEI_total, points(x=bar, Emissions_year))
+                               ylab = expression("PM"[2.5] * " Emissions (tonnes)"), 
+                               ylim = c(0, 4000),
+                               main = expression("Baltimore City Annual PM"[2.5] * " Emissions")))
+with(Baltimore, text(x = bar, Emissions, Emissions, adj=c(0,-0.8)))
+with(Baltimore, lines(x = bar, y=Emissions, lwd = 2))
+with(Baltimore, points(x = bar, y=Emissions))
+
 
 #### Save plot 2
 dev.off()
 
-# The bar charts in plot2.R demonstrates a declining trend of total PM2.5 emission 
-# from all sources in years 1999, 2002, 2005, and 2008.  
+# From the year of 1999 to 2008, according to the bar charts in plot2.R, the PM2.5 emission 
+# in Baltimore City, Maryland did decreased, although slighly. 

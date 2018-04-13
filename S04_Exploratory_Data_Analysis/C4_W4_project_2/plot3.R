@@ -1,19 +1,14 @@
 
 # S04_Exploratory_Data_Analysis
-# Project 
+# Project 2 
 # Week 4
 # Nathaniel Lai
 
 ####################################################################################################
 
-# This R script (unorderedly)
-
-# 1. Merges the training and the test sets to create one data set.
-# 2. Extracts only the measurements on the mean and standard deviation for each measurement.
-# 3. Uses descriptive activity names to name the activities in the data set
-# 4. Appropriately labels the data set with descriptive variable names.
-# 5. From the data set in step 4, creates a second, independent tidy data set with the average of
-#    each variable for each activity and each subject.
+# This R script creates plot3.R which uses ggplot2 library to see which of the four sources 
+# (point, nonpoint, onroad, nonroad) have seen decreases in emissions from 1999–2008 for Baltimore 
+# City and which of the four have seen increases in emissions from 1999–2008
 
 ####################################################################################################
 
@@ -23,22 +18,50 @@ setwd("~/Desktop/datasciencecoursera/S04_Exploratory_Data_Analysis/C4_W4_project
 list.files()
 
 
-
 #### Import Packages 
-purrr::map_lgl(c("data.table", "stringr", "dplyr"), require, character.only=TRUE, quietly=TRUE)
+library(tidyverse)
 path <- getwd()
 
 
 #### Download PM2.5 Emissions Data
 if(!file.exists("exdata%2Fdata%2FNEI_data.zip") | !file.exists("exdata%2Fdata%2FNEI_data")){
-  url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"
-  download.file(url, file.path(path, "exdata%2Fdata%2FNEI_data.zip"))
-  unzip(zipfile = "exdata%2Fdata%2FNEI_data.zip")
+    url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"
+    download.file(url, file.path(path, "exdata%2Fdata%2FNEI_data.zip"))
+    unzip(zipfile = "exdata%2Fdata%2FNEI_data.zip")
 }
 dir()
 
-#### Import Data to R (This first line will likely take a few seconds. Be patient!)
-NEI <- readRDS("summarySCC_PM25.rds")
-SCC <- readRDS("Source_Classification_Code.rds")
-head(NEI)
-head(SCC)
+
+#### Import Data to R (The first line takes a few seconds.)
+NEI <- readRDS(file = "summarySCC_PM25.rds")
+SCC <- readRDS(file = "Source_Classification_Code.rds")
+
+
+#### Start png device
+png("plot3.png", width = 700, height = 600)
+
+
+#### Generate plot3.R
+Baltimore <- NEI %>% 
+    filter(fips == "24510") %>% 
+    select(Emissions, year, type) %>% 
+    group_by(type, year) %>% 
+    summarise(Emissions_year = sum(Emissions))
+
+ggplot(data = Baltimore) + 
+    geom_bar(mapping = aes(x=year, fill=factor(year), weight=Emissions_year), width = 1.5) + 
+    geom_line(mapping = aes(x=year, y=Emissions_year)) + 
+    facet_grid(.~type) + 
+    scale_x_continuous(breaks = c(1999, 2002, 2005, 2008)) +  
+    #scale_fill_discrete(name = "year") + 
+    scale_fill_discrete(guide = FALSE) + 
+    labs(x="year", 
+         y=expression("PM"[2.5]*" Emission (Tons)"), 
+         title=expression("PM"[2.5]*" Emissions in Baltimore City")) + 
+    theme_bw()
+
+
+#### Save plot 3
+dev.off()
+#ggsave("plot3.png", width=4, height=4)
+
