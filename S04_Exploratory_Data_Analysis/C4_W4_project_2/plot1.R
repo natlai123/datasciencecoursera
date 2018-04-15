@@ -6,7 +6,7 @@
 
 ####################################################################################################
 
-# This R script creates plot1.R which uses base ploting system to show the total PM2.5 emission 
+# This R script creates plot1.R by using base ploting system to show the total PM2.5 emission 
 # from all sources for each of the years 1999, 2002, 2005, and 2008. It attempts to see if the  
 # total emissions from PM2.5 have decreased in the United States from 1999 to 2008.
 
@@ -24,7 +24,7 @@ path <- getwd()
 
 
 #### Download PM2.5 Emissions Data
-if(!file.exists("exdata%2Fdata%2FNEI_data.zip") | !file.exists("exdata%2Fdata%2FNEI_data")){
+if(!file.exists("exdata%2Fdata%2FNEI_data.zip")){
   url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"
   download.file(url, file.path(path, "exdata%2Fdata%2FNEI_data.zip"))
   unzip(zipfile = "exdata%2Fdata%2FNEI_data.zip")
@@ -40,19 +40,19 @@ SCC <- readRDS(file = "Source_Classification_Code.rds")
 
 
 #### Start png device
-png(filename = "plot1.png", width = 600, height = 600, units = "px", bg = "white")
+png(filename = "plot1.png", width = 700, height = 600)
 
 
 #### Generate plot1.R
 NEI_total <- NEI %>% 
     select(Emissions, year) %>% 
     group_by(year) %>% 
-    summarise(Emissions_year = round(sum(Emissions)/1000000, digits = 2))
+    summarise(Emissions_year = round(sum(Emissions)/1000, digits = 2))
 par(mar=c(3.5, 3.5, 2, 1), mgp=c(2, 0.7, 0))
 bar <- with(NEI_total, barplot(Emissions_year, names = year, 
             xlab = "Years", 
-            ylab = expression("PM"[2.5] * " Emissions (million tonnes)"), 
-            ylim = c(0, 8),
+            ylab = expression("PM"[2.5] * " Emissions (Thousand Tons)"), 
+            ylim = c(0, 8000),
             main = expression("US Annual PM"[2.5] * " Emissions")))
 with(NEI_total, text(x = bar, Emissions_year, Emissions_year, adj=c(0,-0.8)))
 with(NEI_total, lines(x = bar, y=Emissions_year, lwd = 2))
@@ -63,3 +63,4 @@ dev.off()
 
 # The bar charts in plot1.R demonstrates a declining trend of total PM2.5 emission 
 # from all sources in years 1999, 2002, 2005, and 2008.  
+

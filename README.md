@@ -1,19 +1,45 @@
-# Data Science Specialization 
-## John Hopkins University / Coursera
+Data Science Specialization
+========================================================
 
-*Course 1: Data Scientist Toolbox (Completed)*
+This is the master respository containing my work for the [Coursera Data Science][1] Specialization. Each of the subdirectories correpsond to a different course and are self-contained. The official repository for the specialization can be found [here][2].
 
-*Course 2: R Programming (Completed)*
+## Data Scientist's Toolbox
+The first course of the specialization orients student to the field of data science. A note on proper data sharing can be found [here][3]. The objectives for the [Data Scientist's Toolbox][4] were to set expectations for the Coursera Specialization and to gain familiarity with GitHub and Rmarkdown. 
 
-*Course 3: Getting and Cleaning Data (Completed)*
+## R Programming
+The course in [R Programming][5] involved familiarizing you with [R][6] and [RStudio][7]. This course involved two minor programming assignments to demonstrate R programming. My primary files for the course can be round [here][8]. The second programming assignment is part of a fork and can be found [here][9].
 
-*Course 4: Exploratory Data Analysis (In Progress)*
+## Getting and Cleaning Data
+The course in [Getting and Cleaning Data][10] involves learning methods to generate "tidy" datasets. My primary files for the course can be round [here][11].
+
+## Exploratory Data Analysis
+The course in [Exploratory Data Analysis][12] covers the basic R plot function, the lattice package, ggplot, hierarchical Clustering, k-means Clustering, principle compoment analysis. My primary files for the course can be round [here][13]. In addional to the two projects required for passing the course, I have also create a note on principle compoment analysis which is included in the [subdirectory][14].
+
+
+[1]: https://www.coursera.org/specialization/jhudatascience/1 "Coursera Data Science"
+[2]: https://github.com/DataScienceSpecialization/courses "Coursera Github"
+[3]: https://github.com/jtleek/datasharing  "Data Sharing"
+[4]: https://www.coursera.org/course/datascitoolbox "Data Science Toolbox"
+[5]: https://www.coursera.org/course/rprog "R Programming"
+[7]: http://cran.r-project.org/ "R"
+[10]: http://www.rstudio.com/ "RStudio"
+[8]: https://github.com/natlai123/datasciencecoursera/tree/master/S02_R_Programming "C2 RProgRepo"
+[9]: https://github.com/jbspangler/ProgrammingAssignment2 "RProg Assignment 2"
+[10]: https://www.coursera.org/course/getdata "Getting and Cleaning Data"
+[11]: https://github.com/natlai123/datasciencecoursera/tree/master/S03_Getting_and_Cleaning_Data "C3 GetCleanRepo"
+[12]: https://www.coursera.org/course/exdata "Exploratory Data Analysis"
+[13]: https://github.com/natlai123/datasciencecoursera/tree/master/S04_Exploratory_Data_Analysis "C4 Exploratory Data Analysis"
+[14]: https://github.com/natlai123/datasciencecoursera/tree/master/S04_Exploratory_Data_Analysis/PCA_Notes "PCA Note"
+
+
 
 # A Brief Reflection on Learning R
+#### 9, March, 2018
+---------
 
 Over the past two months, I have been focusing on learning the statistical software programming language, R. I was told that the learning curve for R is steep. And it is. But the journey is surprisingly fun and eye-opening. Leaning R is more than learning its syntax. It, more importantly, involves the thinking and approach to conduct data analysis, particularly if one dives into “Tidyverse”. It is about time for me to sit down and reflect on how far I have got and where I am heading.
 
-Even though I am not a newbie when it comes to statistical programming languages (I learnt Stata, SAS, Matlab before beginning this full-blown effort in conquering R), R, in my opinion, is vast. 
+Even though I am not a newbie when it comes to statistical programming languages (I learnt Stata, SAS, Matlab before beginning this full-blown effort in conquering R), R, in my opinion, is vast.
 
 I primarily rely on the following online resources:
 

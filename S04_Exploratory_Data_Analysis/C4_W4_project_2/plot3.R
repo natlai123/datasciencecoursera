@@ -6,7 +6,7 @@
 
 ####################################################################################################
 
-# This R script creates plot3.R which uses ggplot2 library to see which of the four sources 
+# This R script creates plot3.R by using ggplot2 library to see which of the four sources 
 # (point, nonpoint, onroad, nonroad) have seen decreases in emissions from 1999–2008 for Baltimore 
 # City and which of the four have seen increases in emissions from 1999–2008
 
@@ -24,10 +24,10 @@ path <- getwd()
 
 
 #### Download PM2.5 Emissions Data
-if(!file.exists("exdata%2Fdata%2FNEI_data.zip") | !file.exists("exdata%2Fdata%2FNEI_data")){
-    url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"
-    download.file(url, file.path(path, "exdata%2Fdata%2FNEI_data.zip"))
-    unzip(zipfile = "exdata%2Fdata%2FNEI_data.zip")
+if(!file.exists("exdata%2Fdata%2FNEI_data.zip")){
+  url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"
+  download.file(url, file.path(path, "exdata%2Fdata%2FNEI_data.zip"))
+  unzip(zipfile = "exdata%2Fdata%2FNEI_data.zip")
 }
 dir()
 
@@ -35,10 +35,6 @@ dir()
 #### Import Data to R (The first line takes a few seconds.)
 NEI <- readRDS(file = "summarySCC_PM25.rds")
 SCC <- readRDS(file = "Source_Classification_Code.rds")
-
-
-#### Start png device
-png("plot3.png", width = 700, height = 600)
 
 
 #### Generate plot3.R
@@ -51,8 +47,10 @@ Baltimore <- NEI %>%
 ggplot(data = Baltimore) + 
     geom_bar(mapping = aes(x=year, fill=factor(year), weight=Emissions_year), width = 1.5) + 
     geom_line(mapping = aes(x=year, y=Emissions_year)) + 
+    geom_point(mapping = aes(x=year, y=Emissions_year)) +
     facet_grid(.~type) + 
-    scale_x_continuous(breaks = c(1999, 2002, 2005, 2008)) +  
+    scale_x_continuous(breaks = c(1999, 2002, 2005, 2008)) + 
+    scale_y_continuous(breaks = seq(0, 2500, by=  250)) + 
     #scale_fill_discrete(name = "year") + 
     scale_fill_discrete(guide = FALSE) + 
     labs(x="year", 
@@ -62,6 +60,7 @@ ggplot(data = Baltimore) +
 
 
 #### Save plot 3
-dev.off()
-#ggsave("plot3.png", width=4, height=4)
+ggsave("plot3.png", width=6, height=4)
 
+# three souces, nonpoint, onroad, nonroad, have seen similar decreases in emissions from 1999–2008 
+# for Baltimore City and only point has seen an increase in emissions from 1999–2008.
