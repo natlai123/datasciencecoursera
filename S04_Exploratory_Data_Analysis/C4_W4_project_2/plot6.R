@@ -44,7 +44,7 @@ NEI_city_vehicle <- NEI %>%
   group_by(fips, year) %>% 
   summarise(Emissions_year = round(sum(Emissions), digits = 2))
 
-labels <- c("06037" = "Los Angeles", "24510" = "Baltimore City")
+labels <- c("06037" = "Los Angeles, CA", "24510" = "Baltimore, MD")
 
 ggplot(data = NEI_city_vehicle) + 
   geom_bar(mapping = aes(x=year, fill = fips, weight=Emissions_year), width = 1.5) + 
@@ -57,7 +57,7 @@ ggplot(data = NEI_city_vehicle) +
   facet_grid(.~fips, labeller=labeller(fips = labels)) +
   labs(x="year", 
        y=expression("Total PM"[2.5]*" Emission (Tons)"), 
-       title=expression("Annual Motor-Vehicle-Related PM"[2.5] * " Emissions")) + 
+       title=expression("Annual Motor-Vehicle-Related PM"[2.5] * " Emissions: Baltimore City, MD  vs Los Angeles, CA")) + 
   theme_bw()
 
 ggsave("plot6.png", width=6, height=4)

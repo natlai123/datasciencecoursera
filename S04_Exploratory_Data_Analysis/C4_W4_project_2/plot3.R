@@ -58,6 +58,13 @@ ggplot(data = Baltimore) +
          title=expression("PM"[2.5]*" Emissions in Baltimore City")) + 
     theme_bw()
 
+## Line Chart
+# ggplot(Baltimore, aes(year, Emissions_year, color = type)) + 
+#   geom_line() + 
+#   xlab("year") + 
+#   ylab(expression('Total PM'[2.5]*" Emissions")) + 
+#   ggtitle('Total Emissions in Baltimore City, Maryland (fips == "24510") from 1999 to 2008') 
+# 
 
 #### Save plot 3
 ggsave("plot3.png", width=6, height=4)
