@@ -25,9 +25,9 @@ path <- getwd()
 
 #### Download PM2.5 Emissions Data
 if(!file.exists("exdata%2Fdata%2FNEI_data.zip")){
-  url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"
-  download.file(url, file.path(path, "exdata%2Fdata%2FNEI_data.zip"))
-  unzip(zipfile = "exdata%2Fdata%2FNEI_data.zip")
+    url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"
+    download.file(url, file.path(path, "exdata%2Fdata%2FNEI_data.zip"))
+    unzip(zipfile = "exdata%2Fdata%2FNEI_data.zip")
 }
 dir()
 

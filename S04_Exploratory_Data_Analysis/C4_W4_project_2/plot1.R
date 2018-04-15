@@ -25,9 +25,9 @@ path <- getwd()
 
 #### Download PM2.5 Emissions Data
 if(!file.exists("exdata%2Fdata%2FNEI_data.zip")){
-  url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"
-  download.file(url, file.path(path, "exdata%2Fdata%2FNEI_data.zip"))
-  unzip(zipfile = "exdata%2Fdata%2FNEI_data.zip")
+    url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"
+    download.file(url, file.path(path, "exdata%2Fdata%2FNEI_data.zip"))
+    unzip(zipfile = "exdata%2Fdata%2FNEI_data.zip")
 }
 dir()
 
@@ -50,10 +50,10 @@ NEI_total <- NEI %>%
     summarise(Emissions_year = round(sum(Emissions)/1000, digits = 2))
 par(mar=c(3.5, 3.5, 2, 1), mgp=c(2, 0.7, 0))
 bar <- with(NEI_total, barplot(Emissions_year, names = year, 
-            xlab = "Years", 
-            ylab = expression("PM"[2.5] * " Emissions (Thousand Tons)"), 
-            ylim = c(0, 8000),
-            main = expression("US Annual PM"[2.5] * " Emissions")))
+        xlab = "Years", 
+        ylab = expression("PM"[2.5] * " Emissions (Thousand Tons)"), 
+        ylim = c(0, 8000),
+        main = expression("US Annual PM"[2.5] * " Emissions")))
 with(NEI_total, text(x = bar, Emissions_year, Emissions_year, adj=c(0,-0.8)))
 with(NEI_total, lines(x = bar, y=Emissions_year, lwd = 2))
 with(NEI_total, points(x = bar, y=Emissions_year))

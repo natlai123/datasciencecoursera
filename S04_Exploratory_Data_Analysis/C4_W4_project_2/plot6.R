@@ -25,9 +25,9 @@ path <- getwd()
 
 #### Download PM2.5 Emissions Data
 if(!file.exists("exdata%2Fdata%2FNEI_data.zip")){
-  url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"
-  download.file(url, file.path(path, "exdata%2Fdata%2FNEI_data.zip"))
-  unzip(zipfile = "exdata%2Fdata%2FNEI_data.zip")
+    url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"
+    download.file(url, file.path(path, "exdata%2Fdata%2FNEI_data.zip"))
+    unzip(zipfile = "exdata%2Fdata%2FNEI_data.zip")
 }
 dir()
 
@@ -39,26 +39,26 @@ SCC <- readRDS("Source_Classification_Code.rds")
 
 #### Generate plot6.R
 NEI_city_vehicle <- NEI %>% 
-  filter(fips %in% c("24510", "06037") & type == "ON-ROAD") %>% 
-  select(fips, Emissions, year) %>% 
-  group_by(fips, year) %>% 
-  summarise(Emissions_year = round(sum(Emissions), digits = 2))
+    filter(fips %in% c("24510", "06037") & type == "ON-ROAD") %>% 
+    select(fips, Emissions, year) %>% 
+    group_by(fips, year) %>% 
+    summarise(Emissions_year = round(sum(Emissions), digits = 2))
 
 labels <- c("06037" = "Los Angeles, CA", "24510" = "Baltimore, MD")
 
 ggplot(data = NEI_city_vehicle) + 
-  geom_bar(mapping = aes(x=year, fill = fips, weight=Emissions_year), width = 1.5) + 
-  geom_text(aes(x=year, y = Emissions_year, label = Emissions_year), vjust = -0.5) +
-  geom_line(mapping = aes(x=year, y=Emissions_year)) + 
-  geom_point(mapping = aes(x=year, y=Emissions_year)) +
-  scale_x_continuous(breaks = c(1999, 2002, 2005, 2008)) +  
-  scale_y_continuous(limits = c(0, 5000)) +
-  scale_fill_discrete(guide = FALSE) + 
-  facet_grid(.~fips, labeller=labeller(fips = labels)) +
-  labs(x="year", 
-       y=expression("Total PM"[2.5]*" Emission (Tons)"), 
-       title=expression("Annual Motor-Vehicle-Related PM"[2.5] * " Emissions: Baltimore City, MD  vs Los Angeles, CA")) + 
-  theme_bw()
+    geom_bar(mapping = aes(x=year, fill = fips, weight=Emissions_year), width = 1.5) + 
+    geom_text(aes(x=year, y = Emissions_year, label = Emissions_year), vjust = -0.5) +
+    geom_line(mapping = aes(x=year, y=Emissions_year)) + 
+    geom_point(mapping = aes(x=year, y=Emissions_year)) +
+    scale_x_continuous(breaks = c(1999, 2002, 2005, 2008)) +  
+    scale_y_continuous(limits = c(0, 5000)) +
+    scale_fill_discrete(guide = FALSE) + 
+    facet_grid(.~fips, labeller=labeller(fips = labels)) +
+    labs(x="year", 
+         y=expression("Total PM"[2.5]*" Emission (Tons)"), 
+         title=expression("Annual Motor-Vehicle-Related PM"[2.5] * " Emissions: Baltimore City, MD  vs Los Angeles, CA")) + 
+    theme_bw()
 
 ggsave("plot6.png", width=6, height=4)
 

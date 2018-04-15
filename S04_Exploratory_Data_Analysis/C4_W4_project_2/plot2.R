@@ -24,9 +24,9 @@ path <- getwd()
 
 #### Download PM2.5 Emissions Data
 if(!file.exists("exdata%2Fdata%2FNEI_data.zip")){
-  url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"
-  download.file(url, file.path(path, "exdata%2Fdata%2FNEI_data.zip"))
-  unzip(zipfile = "exdata%2Fdata%2FNEI_data.zip")
+    url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"
+    download.file(url, file.path(path, "exdata%2Fdata%2FNEI_data.zip"))
+    unzip(zipfile = "exdata%2Fdata%2FNEI_data.zip")
 }
 dir()
 
@@ -46,10 +46,10 @@ Baltimore <- NEI[fips=='24510', lapply(.SD, sum, na.rm = TRUE)
 Baltimore$Emissions <- round(Baltimore$Emissions, 2)
 par(mar=c(3.5, 3.5, 2, 1), mgp=c(2, 0.7, 0))
 bar <- with(Baltimore, barplot(Emissions, names = year, col = "blue",
-                 xlab = "Years", 
-                 ylab = expression("PM"[2.5] * " Emissions (Tons)"), 
-                 ylim = c(0, 4000),
-                               main = expression("Baltimore City Annual PM"[2.5] * " Emissions")))
+        xlab = "Years", 
+        ylab = expression("PM"[2.5] * " Emissions (Tons)"), 
+        ylim = c(0, 4000),
+        main = expression("Baltimore City Annual PM"[2.5] * " Emissions")))
 with(Baltimore, text(x = bar, Emissions, Emissions, adj=c(0,-0.8)))
 with(Baltimore, lines(x = bar, y=Emissions, lwd = 2))
 with(Baltimore, points(x = bar, y=Emissions))

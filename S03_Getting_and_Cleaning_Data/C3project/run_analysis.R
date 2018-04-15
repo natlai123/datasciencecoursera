@@ -57,14 +57,14 @@ length(featuresIndex)
 
 ## Expand abbreviations, remove "()", tidy sepereators, "-,", and correct typo
 features$featuresName <- str_replace_all(features$featuresName, 
-        c("^f" = "freqDomain", 
-          "^t" = "timeDomain",
-          "Acc" = "Accelerometer", 
-          "Gyro" = "Gyroscope", 
-          "Mag" = "Magnitude",
-          "\\(\\)" = "",
-          "[-,]" = "_",
-          "BodyBody" = "Body"))
+                                         c("^f" = "freqDomain", 
+                                           "^t" = "timeDomain",
+                                           "Acc" = "Accelerometer", 
+                                           "Gyro" = "Gyroscope", 
+                                           "Mag" = "Magnitude",
+                                           "\\(\\)" = "",
+                                           "[-,]" = "_",
+                                           "BodyBody" = "Body"))
 
 #### Generate references of mean and standard deviation of each measurement for extraction
 measurements <- features$featuresName[featuresIndex]
@@ -99,8 +99,8 @@ one_dataset <- bind_rows(train, test)
 ###############################################################################
 
 one_dataset$activity <- factor(one_dataset$activity, 
-            levels = activityLabels$index, 
-            labels = activityLabels$activity)
+                               levels = activityLabels$index, 
+                               labels = activityLabels$activity)
 
 
 ###############################################################################################
@@ -121,7 +121,7 @@ rm(list = c("features", "activityLabels", "test", "train", "xtest", "ytest", "me
 
 data_Mean <- data_mean_std %>% 
     group_by(activity, subjectNum) %>% 
-        summarise_all(.funs=mean)
+    summarise_all(.funs=mean)
 
 # This works the same as the line above 
 # data_a <- reshape2::recast(data_mean_std, subjectNum + activity~variable,
