@@ -15,6 +15,9 @@ The course in [Getting and Cleaning Data][10] involves learning methods to gener
 ## Exploratory Data Analysis
 The course in [Exploratory Data Analysis][12] covers the basic R plot function, the lattice package, ggplot, hierarchical Clustering, k-means Clustering, principle compoment analysis. My primary files for the course can be round [here][13]. In addional to the two projects required for passing the course, I have also create a note on principle compoment analysis which is included in the [subdirectory][14].
 
+## Reproducible Research
+The course in [Reproducible Research][15]  and introduces the use of [Rpubs][16]. My Rpubs report for this class can be found [here][17].
+
 
 [1]: https://www.coursera.org/specialization/jhudatascience/1 "Coursera Data Science"
 [2]: https://github.com/DataScienceSpecialization/courses "Coursera Github"
@@ -30,7 +33,9 @@ The course in [Exploratory Data Analysis][12] covers the basic R plot function, 
 [12]: https://www.coursera.org/course/exdata "Exploratory Data Analysis"
 [13]: https://github.com/natlai123/datasciencecoursera/tree/master/S04_Exploratory_Data_Analysis "C4 Exploratory Data Analysis"
 [14]: https://github.com/natlai123/datasciencecoursera/tree/master/S04_Exploratory_Data_Analysis/PCA_Notes "PCA Note"
-
+[15]: https://www.coursera.org/course/repdata "Reproducible Research"
+[16]: http://rpubs.com/ "Rpubs"
+[17]: "Rpubs Report"
 
 
 # A Brief Reflection on Learning R
