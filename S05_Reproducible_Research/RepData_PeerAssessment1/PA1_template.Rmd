@@ -31,6 +31,7 @@ The dataset is stored in a comma-separated-value (CSV) file and there are a tota
 #### Import Packages 
 
 ```{r, echo=TRUE, message = F}
+setwd("~/Desktop/datasciencecoursera/S05_Reproducible_Research/RepData_PeerAssessment1")
 library(tidyverse)
 path <- getwd()
 ```
