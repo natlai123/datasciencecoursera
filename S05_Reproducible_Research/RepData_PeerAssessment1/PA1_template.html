@@ -323,7 +323,8 @@ $(document).ready(function () {
 <h2>Loading and preprocessing the data</h2>
 <div id="import-packages" class="section level4">
 <h4>Import Packages</h4>
-<pre class="r"><code>library(tidyverse)
+<pre class="r"><code>setwd(&quot;~/Desktop/datasciencecoursera/S05_Reproducible_Research/RepData_PeerAssessment1&quot;)
+library(tidyverse)
 path &lt;- getwd()</code></pre>
 </div>
 <div id="download-pm2.5-emissions-data" class="section level4">
@@ -385,6 +386,12 @@ sum(is.na(activity$steps)) # 2304 missing values</code></pre>
 <pre><code>## [1] 2304</code></pre>
 <pre class="r"><code>### Strategy 1: Filling in the mean for the corresponding 5-minute interval
 activity_imputed1 &lt;- transform(activity, steps = ifelse(is.na(activity$steps), mean_step_interval$steps[match(activity$interval, mean_step_interval$interval)], activity$steps))
+
+## Alternatively
+# activity_imputed3 &lt;- activity
+# for (i in mean_step_interval$interval) {
+#     activity_imputed3[activity_imputed3$interval == i &amp; is.na(activity_imputed3$steps), ]$steps &lt;- mean_step_interval$steps[mean_step_interval$interval == i]
+# }
 
 # Check if averages for each interval are unchanged
 mean_step_interval_imputed1 &lt;- aggregate(steps ~ interval, activity_imputed1, mean)
@@ -460,8 +467,7 @@ check_diff$diff &lt;- check_diff$sum_step_day_imp - check_diff$sum_step_day_org<
 <div id="are-there-differences-in-activity-patterns-between-weekdays-and-weekends" class="section level2">
 <h2>Are there differences in activity patterns between weekdays and weekends?</h2>
 <pre class="r"><code># Create a factor variable with two levels, &quot;weekday&quot;&quot; and &quot;weekend&quot; 
-weekday_list &lt;- c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;)
-activity_imputed1$week_dummy = as.factor(ifelse(weekdays(activity_imputed1$date) %in% weekday_list, &quot;weekday&quot;, &quot;weekend&quot;))
+activity_imputed1$week_dummy = as.factor(ifelse(weekdays(activity_imputed1$date) %in% c(&quot;Saturday&quot;,&quot;Sunday&quot;), &quot;weekend&quot;, &quot;weekday&quot;))
 
 # Make time series plots of the 5-minute interval and the average number of steps taken
 mean_steps_interval_week &lt;- activity_imputed1 %&gt;% 

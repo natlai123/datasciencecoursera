@@ -103,9 +103,17 @@ sum(is.na(activity$steps)) # 2304 missing values
 ### Strategy 1: Filling in the mean for the corresponding 5-minute interval
 activity_imputed1 <- transform(activity, steps = ifelse(is.na(activity$steps), mean_step_interval$steps[match(activity$interval, mean_step_interval$interval)], activity$steps))
 
+## Alternatively
+# activity_imputed3 <- activity
+# for (i in mean_step_interval$interval) {
+#     activity_imputed3[activity_imputed3$interval == i & is.na(activity_imputed3$steps), ]$steps <- mean_step_interval$steps[mean_step_interval$interval == i]
+# setequal(activity_imputed3, activity_imputed1)
+# }
+
+
 # Check if averages for each interval are unchanged
 mean_step_interval_imputed1 <- aggregate(steps ~ interval, activity_imputed1, mean)
-setequal(mean_step_interval_imputed1, mean_step_interval) 
+setequal(mean_step_interval_imputed1, mean_step_interval)
 
 ```
 
@@ -204,8 +212,7 @@ check_diff$diff <- check_diff$sum_step_day_imp - check_diff$sum_step_day_org
 ```{r, echo=T}
 
 # Create a factor variable with two levels, "weekday"" and "weekend" 
-weekday_list <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
-activity_imputed1$week_dummy = as.factor(ifelse(weekdays(activity_imputed1$date) %in% weekday_list, "weekday", "weekend"))
+activity_imputed1$week_dummy = as.factor(ifelse(weekdays(activity_imputed1$date) %in% c("Saturday","Sunday"), "weekend", "weekday"))
 
 # Make time series plots of the 5-minute interval and the average number of steps taken
 mean_steps_interval_week <- activity_imputed1 %>% 
