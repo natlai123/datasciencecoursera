@@ -65,7 +65,7 @@ mean(total_steps_day$sum_step_day, na.rm = T) # mean
 median(total_steps_day$sum_step_day, na.rm = T) # median
 ```
 
-![plot1](./Reproducible_Research_Project_1_Steps_files/figure-html/unnamed-chunk-3-1.png) 
+![plot1](https://github.com/natlai123/datasciencecoursera/blob/master/S05_Reproducible_Research/RepData_PeerAssessment1/PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
 
 The mean and median total number of steps taken per day are 10766.19 and 10765 respectively.
 
@@ -83,7 +83,7 @@ with(mean_step_interval, plot(steps ~ interval,
 
 ```
 
-![plot2](./Reproducible_Research_Project_1_Steps_files/figure-html/unnamed-chunk-4-1.png)
+![plot2](https://github.com/natlai123/datasciencecoursera/blob/master/S05_Reproducible_Research/RepData_PeerAssessment1/PA1_template_files/figure-html/unnamed-chunk-4-1.png)
 
 ```{r, echo=TRUE}
 # Locate the interval that contains the maximum number of steps
@@ -167,7 +167,7 @@ median(total_steps_day_imputed1$sum_step_day, na.rm = T) # median
 
 ```
 
-![plot3](./Reproducible_Research_Project_1_Steps_files/figure-html/unnamed-chunk-8-1.png)
+![plot3](https://github.com/natlai123/datasciencecoursera/blob/master/S05_Reproducible_Research/RepData_PeerAssessment1/PA1_template_files/figure-html/unnamed-chunk-8-1.png)
 
 After filling in the mean for the corresponding 5-minute interval and replace data on October first, 2012, the histgram remains largely the same except for higher frequency at 0 and the mean value 10766. The imputed median is 10590. And there are now more total steps taken pre day.
 
@@ -222,6 +222,6 @@ ggplot(data = mean_steps_interval_week, aes(x=interval, y = mean_step_interval))
 
 ```
 
-![plot4](./Reproducible_Research_Project_1_Steps_files/figure-html/unnamed-chunk-11-1.png)
+![plot4](https://github.com/natlai123/datasciencecoursera/blob/master/S05_Reproducible_Research/RepData_PeerAssessment1/PA1_template_files/figure-html/unnamed-chunk-11-1.png)
 
 On balance, the panel plot shows that the participant has more personal movement during weekend over weekdays. Individually, each time-series plot indicates a simlar parttern that the individual tends to move more in the morning and less at night.
