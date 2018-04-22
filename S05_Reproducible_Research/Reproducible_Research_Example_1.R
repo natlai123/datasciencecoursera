@@ -1,4 +1,5 @@
 ## Reproducible Research Example 1 
+## Code from lecture slides
 
 library(kernlab)
 data(spam)
