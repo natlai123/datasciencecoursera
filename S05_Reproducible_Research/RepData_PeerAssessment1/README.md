@@ -117,7 +117,7 @@ setequal(mean_step_interval_imputed1, mean_step_interval)
 
 ```
 
-Impute missing values by filling in the mean for that 5-minute interval (strategy 1) is intuitive and granular. Futher investigation suggests that using the mean for that 5-minute interval generates the same result as using the overal mean of steps throughout the sample period when calculating the frequency of total number of steps taken per day. This intriguing result arises from the structure of the missing values. Missing values tend to cluster together. They in fact occur 288 times in a row. Since there are 2304 missing values in the sample and 288 intervals per day, there seem to be $8$ $(= 2304/288)$ days of missing data (converting 288 groups of 5-minute interval into hours adds up to a 24 hours ($288*5/60 = 24$). Thus, using dataset with missing values replaced by the overal mean of `steps` generates the same histogram (the code is provided below but the result is not shown to avoid redundancy). 
+Impute missing values by filling in the mean for that 5-minute interval (strategy 1) is intuitive and granular. Futher investigation suggests that using the mean for that 5-minute interval generates the same result as using the overal mean of steps throughout the sample period when calculating the frequency of total number of steps taken per day. This intriguing result arises from the structure of the missing values. Missing values tend to cluster together. They in fact occur 288 times in a row. Since there are 2304 missing values in the sample and 288 intervals per day, there seem to be $8$ $(= 2304/288)$ days of missing data (converting 288 groups of 5-minute interval into hours adds up to a 24 hours ($288*5/60 = 24$). Thus, using dataset with missing values replaced by the overall mean of `steps` generates the same histogram (the code is provided below but the result is not shown to avoid redundancy).
 
 
 ```{r, echo=T, eval = F}
@@ -141,7 +141,7 @@ ggplot(data = total_steps_day_imputed2, aes(sum_step_day)) +
 
 ```
 
-Returning to strategy 1 (Impute missing values by inserting the mean for that 5-minute interval), checking the total number of steps tanken each day shows that on the first day of October, 2012, the total number of steps taken is 10766 (which is the sample mean filled in). This number is probably too high given the fact that it was the first day that the particiant put on the device, Fitbit. Perhaps it makes sense that we replace the imputed mean with $0$ to alleviate this overestimation. 
+Returning to strategy 1 (Impute missing values by inserting the mean for that 5-minute interval), checking the total number of steps tanken each day shows that on the first day of October, 2012, the total number of steps taken is 10766 (which is the sample mean filled in). This number is probably too high given the fact that it was the first day that the particiant put on the device, Fitbit. Perhaps it makes sense that we replace the imputed mean with 0 to alleviate this overestimation.
 
 ```{r, echo = T, warning = F}
 
@@ -226,6 +226,15 @@ ggplot(data = mean_steps_interval_week, aes(x=interval, y = mean_step_interval))
          x = "5-minute interval", 
          y = "Average Number of Steps Taken") +
     theme_bw()
+
+# # Alternatively
+# lattice::xyplot(mean_step_interval ~ interval | week_dummy,
+#     data = mean_steps_interval_week,
+#     type = "l",
+#     layout = c(1, 2),
+#     main = "Daily Averge Steps by Weektype",
+#     xlab = "5-minute interval",
+#     ylab = "Average Number of Steps Taken")
 
 ```
 
